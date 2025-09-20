@@ -33,6 +33,10 @@ const registerUserValidations = [
     .withMessage("Last name must be a string")
     .notEmpty()
     .withMessage("Last name is required"),
+  body("role")
+    .optional()
+    .isIn(["user", "seller"])
+    .withMessage("Role must be either 'user' or 'seller'"),
 
   responseWithValidationErrors,
 ];
@@ -58,7 +62,41 @@ const loginUserValidations = [
   },
 ];
 
+const addUserAddressValidations = [
+  body("street")
+    .isString()
+    .withMessage("Street must be a string")
+    .notEmpty()
+    .withMessage("Street is required"),
+  body("city")
+    .isString()
+    .withMessage("City must be a string")
+    .notEmpty()
+    .withMessage("City is required"),
+  body("state")
+    .isString()
+    .withMessage("State must be a string")
+    .notEmpty()
+    .withMessage("State is required"),
+  body("zip")
+    .isString()
+    .withMessage("Zip must be a string")
+    .notEmpty()
+    .withMessage("Zip is required"),
+  body("country")
+    .isString()
+    .withMessage("Country must be a string")
+    .notEmpty()
+    .withMessage("Country is required"),
+  body("isDefault")
+    .optional()
+    .isBoolean()
+    .withMessage("isDefault must be a boolean"),
+  responseWithValidationErrors,
+];
+
 module.exports = {
   registerUserValidations,
   loginUserValidations,
+  addUserAddressValidations,
 };

@@ -11,9 +11,11 @@ async function authMiddleware(req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
+
     const user = decoded;
 
-    res.user = user;
+    // Attach user to both req and res to support controllers that read either
+    req.user = user;
 
     next();
   } catch (error) {
