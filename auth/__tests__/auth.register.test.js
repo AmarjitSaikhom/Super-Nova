@@ -1,13 +1,9 @@
 const request = require("supertest");
 const app = require("../src/app");
-const connectDB = require("../src/db/db");
 
 // Ensure the server doesn't start: we use app directly
 
 describe("POST /api/auth/register", () => {
-  beforeAll(async () => {
-    await connectDB();
-  });
 
   it("creates a user and return 201 with user (no password)", async () => {
     const res = await request(app)
