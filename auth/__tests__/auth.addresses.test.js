@@ -2,14 +2,10 @@ const request = require("supertest");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const app = require("../src/app");
-const connectDB = require("../src/db/db");
 const userModel = require("../src/models/user.model");
 const mongoose = require("mongoose");
 
 describe("User addresses API", () => {
-  beforeAll(async () => {
-    await connectDB();
-  });
 
   async function seedUserAndLogin({ username = "addr_user", email = "addr@example.com" } = {}) {
     const password = "Test1234!";

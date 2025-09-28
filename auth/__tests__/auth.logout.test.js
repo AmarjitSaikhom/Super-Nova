@@ -1,15 +1,10 @@
 const request = require("supertest");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const app = require("../src/app");
-const connectDB = require("../src/db/db");
 const userModel = require("../src/models/user.model");
 
 describe("GET /api/auth/logout", () => {
-  beforeAll(async () => {
-    await connectDB();
-  });
 
   it("clears the auth cookie and returns 200 when logged in", async () => {
     // Seed and login to get cookie
